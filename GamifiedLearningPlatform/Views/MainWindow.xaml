@@ -1,0 +1,112 @@
+﻿<Window x:Class="GamifiedLearningPlatform.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewmodels="clr-namespace:GamifiedLearningPlatform.ViewModels"
+        xmlns:views="clr-namespace:GamifiedLearningPlatform.Views"
+        mc:Ignorable="d"
+        Title="Gamified Learning Platform" Height="720" Width="1280" WindowStartupLocation="CenterScreen">
+    
+    <Window.DataContext>
+        <viewmodels:MainViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewmodels:StudentDashboardViewModel}">
+            <views:StudentDashboardView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:StudentDetailsViewModel}">
+            <views:StudentDetailsView/>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" Style="{StaticResource SidebarBorderStyle}">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                    <TextBlock Text="🔥"
+                               FontSize="24"
+                               VerticalAlignment="Center"
+                               Margin="5,0,10,0"/>
+               
+                    <TextBlock Text="GamifiedLMS" Style="{StaticResource SidebarHeaderStyle}" VerticalAlignment="Bottom"/>
+                </StackPanel>
+                <TextBlock Text="NAVIGATION" FontSize="11" FontWeight="SemiBold" Foreground="#95A5A6" Margin="15,15,0,10"/>
+                
+                <Button Style="{StaticResource NavButtonStyle}" Margin="0,5">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="📊" FontSize="18" Margin="0,0,10,0"/>
+                        <TextBlock Text="Dashboard" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                
+                <Button Command="{Binding ShowStudentDashboardCommand}" Style="{StaticResource NavButtonStyle}">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="👥" FontSize="18" Margin="0,0,10,0"/>
+                            <TextBlock Text="Студенти" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                
+                <Button Style="{StaticResource NavButtonStyle}" Margin="0,5">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="📚" FontSize="18" Margin="0,0,10,0"/>
+                        <TextBlock Text="Курси" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                
+                <Button Style="{StaticResource NavButtonStyle}" Margin="0,5">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="🏆" FontSize="18" Margin="0,0,10,0"/>
+                        <TextBlock Text="Рейтинг" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                
+                <Button Style="{StaticResource NavButtonStyle}" Margin="0,5">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="👥" FontSize="18" Margin="0,0,10,0"/>
+                        <TextBlock Text="Команди" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                
+                <Button Style="{StaticResource NavButtonStyle}" Margin="0,5">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="📈" FontSize="18" Margin="0,0,10,0"/>
+                        <TextBlock Text="Звіти" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                
+                <Separator Margin="0,20" Background="#E1E8ED"/>
+                
+                <Button Command="{Binding SaveStudentsCommand}" Margin="0,10">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                            <Setter Property="Background" Value="#00B894"/>
+                            <Setter Property="Padding" Value="15,10"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#00A083"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="💾" FontSize="16" Margin="0,0,8,0" Foreground="White" />
+                        <TextBlock Text="Зберегти дані" VerticalAlignment="Center" Foreground="White"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Column="1" Style="{StaticResource MainContentBorderStyle}">
+            <ContentControl Content="{Binding CurrentViewModel}"/>
+        </Border>
+    </Grid>
+</Window>

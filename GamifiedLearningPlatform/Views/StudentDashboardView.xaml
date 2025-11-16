@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="GamifiedLearningPlatform.Views.StudentDashboardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:converters="clr-namespace:GamifiedLearningPlatform.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1000">
+
+    <UserControl.Resources>
+        <converters:BadgeListConverter x:Key="BadgeListConverter"/>
+        
+        <Storyboard x:Key="FadeInAnimation">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.0" To="1.0" Duration="0:0:0.5"/>
+        </Storyboard>
+    </UserControl.Resources>
+    
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard Storyboard="{StaticResource FadeInAnimation}"/>
+        </EventTrigger>
+    </UserControl.Triggers>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Дашборд Студентів" Style="{StaticResource PageTitleStyle}"/>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,0,0,20">
+            <TextBlock Text="Пошук:" Margin="0,0,10,0"/>
+            <TextBox Width="250" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+
+        <DataGrid Grid.Row="2" ItemsSource="{Binding StudentView}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Ім'я" Binding="{Binding FullName}" Width="*"/>
+                <DataGridTextColumn Header="Рівень" Binding="{Binding Level}" Width="100"/>
+                <DataGridTextColumn Header="Всього XP" Binding="{Binding TotalXp}" Width="120"/>
+                <DataGridTextColumn Header="Бейджі" Binding="{Binding Badges, Converter={StaticResource BadgeListConverter}}" Width="2*"/>
+                <DataGridTemplateColumn Header="Дії" Width="120">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Деталі" 
+                                    Command="{Binding DataContext.NavigateToStudentDetailsCommand, RelativeSource={RelativeSource AncestorType=Window}}" 
+                                    CommandParameter="{Binding}"
+                                    Foreground="White"
+                                    Background="CornflowerBlue"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
+
