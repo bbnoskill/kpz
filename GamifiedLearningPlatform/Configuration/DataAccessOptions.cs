@@ -11,15 +11,15 @@ public static class DataProviderNames
 {
     public const string CodeFirstEf = "CodeFirstEf";
     public const string DbFirstEf = "DbFirstEf";
-    public const string AdoNet = "AdoNet";
 }
 
 public class ConnectionStringsOptions
 {
     public string CodeFirst { get; set; } = string.Empty;
     public string DbFirst { get; set; } = string.Empty;
-    public string AdoNet { get; set; } = string.Empty;
 }
+
+
 
 
 

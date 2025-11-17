@@ -153,3 +153,4 @@ C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform\ob
 C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform\obj\Debug\net8.0-windows\GamifiedLearningPlatform.pdb
 C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform\obj\Debug\net8.0-windows\GamifiedLearningPlatform.genruntimeconfig.cache
 C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform\obj\Debug\net8.0-windows\ref\GamifiedLearningPlatform.dll
+C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform\obj\Debug\net8.0-windows\GamifiedLearningPlatform.sourcelink.json

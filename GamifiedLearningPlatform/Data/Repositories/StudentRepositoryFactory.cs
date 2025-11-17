@@ -11,7 +11,6 @@ public static class StudentRepositoryFactory
     {
         return options.DefaultProvider switch
         {
-            DataProviderNames.AdoNet => new StudentRepositoryWithAdoNet(options.ConnectionStrings.AdoNet),
             DataProviderNames.DbFirstEf => CreateDbFirstRepository(options.ConnectionStrings.DbFirst),
             _ => CreateCodeFirstRepository(options.ConnectionStrings.CodeFirst)
         };

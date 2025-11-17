@@ -65,8 +65,9 @@ public class EfCodeFirstStudentRepository : IStudentRepository
             {
                 // Remove assignments that are no longer in the payload
                 var payloadAssignmentIds = payloadStudent.Assignments
-                    .Select(a => a.Id == Guid.Empty ? Guid.NewGuid() : a.Id)
+                    .Select(a => a.Id)
                     .ToHashSet();
+
                 
                 var assignmentsToRemove = student.Assignments
                     .Where(a => !payloadAssignmentIds.Contains(a.Id))
@@ -103,13 +104,27 @@ public class EfCodeFirstStudentRepository : IStudentRepository
 
     private static Student CloneStudentWithId(Student student)
     {
-        if (student.Id == Guid.Empty)
+        return new Student
         {
-            student.Id = Guid.NewGuid();
-        }
-
-        return student;
+            Id = student.Id == Guid.Empty ? Guid.NewGuid() : student.Id,
+            FirstName = student.FirstName,
+            LastName = student.LastName,
+            Email = student.Email,
+            Level = student.Level,
+            TotalXp = student.TotalXp,
+            Badges = student.Badges.ToList(),
+            Assignments = student.Assignments
+                .Select(a => new Assignment
+                {
+                    Id = a.Id == Guid.Empty ? Guid.NewGuid() : a.Id,
+                    Title = a.Title,
+                    XpAward = a.XpAward,
+                    IsCompleted = a.IsCompleted
+                })
+                .ToList()
+        };
     }
+
 }
 
 

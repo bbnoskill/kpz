@@ -125,81 +125,13 @@ Similar SQL operations as Code First, but you'll see:
 - Same SELECT, INSERT, UPDATE, DELETE patterns
 - Entity Framework generates similar SQL based on the model
 
-### When Using ADO.NET (`AdoNet`)
-
-#### On Application Startup (Load Students)
-```sql
--- Load students
-SELECT Id, FirstName, LastName, Email, TotalXp, Level FROM Students
-
--- Load badges
-SELECT StudentId, Name FROM StudentBadges
-
--- Load assignments
-SELECT Id, StudentId, Title, XpAward, IsCompleted FROM Assignments
-```
-
-#### On Save Button Click (Save Students)
-```sql
--- Begin transaction
-BEGIN TRANSACTION
-
--- Check existing students
-SELECT Id FROM Students
-
--- Upsert student (IF EXISTS pattern)
-IF EXISTS (SELECT 1 FROM Students WHERE Id = @Id)
-BEGIN
-    UPDATE Students
-    SET FirstName = @FirstName,
-        LastName = @LastName,
-        Email = @Email,
-        TotalXp = @TotalXp,
-        Level = @Level
-    WHERE Id = @Id;
-END
-ELSE
-BEGIN
-    INSERT INTO Students (Id, FirstName, LastName, Email, TotalXp, Level)
-    VALUES (@Id, @FirstName, @LastName, @Email, @TotalXp, @Level);
-END
-
--- Delete existing badges
-DELETE FROM StudentBadges WHERE StudentId = @StudentId
-
--- Insert new badges
-INSERT INTO StudentBadges (Id, StudentId, Name) VALUES (@Id, @StudentId, @Name)
-
--- Delete existing assignments
-DELETE FROM Assignments WHERE StudentId = @StudentId
-
--- Insert new assignments
-INSERT INTO Assignments (Id, StudentId, Title, XpAward, IsCompleted)
-VALUES (@Id, @StudentId, @Title, @XpAward, @IsCompleted)
-
--- Delete removed students
-DELETE FROM StudentBadges WHERE StudentId = @StudentId
-DELETE FROM Assignments WHERE StudentId = @StudentId
-DELETE FROM Students WHERE Id = @StudentId
-
--- Commit transaction
-COMMIT TRANSACTION
-```
-
-## Key Differences Between Providers
+## Key Features of EF Core
 
 ### EF Core (Code First & Db First)
 - Uses parameterized queries with `@p0`, `@p1`, etc.
 - Batch operations in single `SaveChanges()` call
 - Automatic transaction management
 - More complex SQL with JOINs for related data loading
-
-### ADO.NET
-- Explicit transaction management (`BEGIN TRANSACTION` / `COMMIT`)
-- Uses named parameters (`@Id`, `@FirstName`, etc.)
-- IF EXISTS pattern for upserts
-- More explicit DELETE/INSERT patterns
-- Manual relationship management
 
 ## Useful Profiler Columns to Monitor
 
@@ -240,11 +172,13 @@ When you click "Save" button, you should see:
 1. SELECT statements to load current state
 2. UPDATE/INSERT statements for modified entities
 3. DELETE statements for removed entities
-4. All wrapped in a transaction (for ADO.NET) or single SaveChanges (for EF Core)
+4. All wrapped in a single SaveChanges call (EF Core manages transactions automatically)
 
 The number of SQL statements will vary based on:
 - Number of students being saved
 - Number of assignments per student
 - Number of badges per student
 - Whether entities are new, updated, or deleted
+
+
 
