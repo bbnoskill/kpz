@@ -7,8 +7,8 @@ namespace GamifiedLearningPlatform.ViewModels;
 
 public class StudentDetailsViewModel : BaseViewModel
 {
-    private Student _selectedStudent = null!;
-    private readonly MainViewModel? _mainViewModel;
+    private Student _selectedStudent;
+    private readonly MainViewModel _mainViewModel;
 
     public Student SelectedStudent
     {
@@ -23,8 +23,8 @@ public class StudentDetailsViewModel : BaseViewModel
         }
     }
 
-    public ObservableCollection<Assignment> Assignments { get; }
-    public ObservableCollection<string> Badges { get; }
+    public ObservableCollection<Assignment> Assignments { get; set; }
+    public ObservableCollection<string> Badges { get; set; }
 
     public ICommand AddBadgeCommand { get; }
     public ICommand RemoveBadgeCommand { get; }
@@ -32,7 +32,7 @@ public class StudentDetailsViewModel : BaseViewModel
     public ICommand RemoveAssignmentCommand { get; }
     public ICommand BackToDashboardCommand { get; }
 
-    public StudentDetailsViewModel(Student student, MainViewModel? mainViewModel = null)
+    public StudentDetailsViewModel(Student student, MainViewModel mainViewModel = null)
     {
         SelectedStudent = student;
         _mainViewModel = mainViewModel;
@@ -56,12 +56,12 @@ public class StudentDetailsViewModel : BaseViewModel
         BackToDashboardCommand = new RelayCommand(BackToDashboard);
     }
 
-    private void RemoveBadge(object? badge)
+    private void RemoveBadge(object badge)
     {
         if (badge is string b) Badges.Remove(b);
     }
 
-    private void BackToDashboard(object? obj)
+    private void BackToDashboard(object obj)
     {
         SyncChangesToStudent();
         _mainViewModel?.ShowStudentDashboard(null);

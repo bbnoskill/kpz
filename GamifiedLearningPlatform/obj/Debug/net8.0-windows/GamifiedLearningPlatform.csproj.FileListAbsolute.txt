@@ -9,7 +9,6 @@ C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform\ob
 C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
 C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform\obj\Debug\net8.0-windows\GamifiedLearningPlatform_MarkupCompile.cache
 C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform\obj\Debug\net8.0-windows\GamifiedLearningPlatform_MarkupCompile.lref
-C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform\bin\Debug\net8.0-windows\appsettings.json
 C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform\bin\Debug\net8.0-windows\GamifiedLearningPlatform.exe
 C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform\bin\Debug\net8.0-windows\GamifiedLearningPlatform.deps.json
 C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform\bin\Debug\net8.0-windows\GamifiedLearningPlatform.runtimeconfig.json
@@ -34,7 +33,6 @@ C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform\bi
 C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform\bin\Debug\net8.0-windows\Microsoft.Extensions.Caching.Memory.dll
 C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform\bin\Debug\net8.0-windows\Microsoft.Extensions.Configuration.dll
 C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform\bin\Debug\net8.0-windows\Microsoft.Extensions.Configuration.Abstractions.dll
-C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform\bin\Debug\net8.0-windows\Microsoft.Extensions.Configuration.Binder.dll
 C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform\bin\Debug\net8.0-windows\Microsoft.Extensions.Configuration.FileExtensions.dll
 C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform\bin\Debug\net8.0-windows\Microsoft.Extensions.Configuration.Json.dll
 C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform\bin\Debug\net8.0-windows\Microsoft.Extensions.DependencyInjection.dll

@@ -8,7 +8,7 @@ namespace GamifiedLearningPlatform.Models
     public class Assignment : INotifyPropertyChanged
     {
         private Guid _id;
-        private string _title = string.Empty;
+        private string _title;
         private int _xpAward;
         private bool _isCompleted;
         
@@ -17,14 +17,14 @@ namespace GamifiedLearningPlatform.Models
         public int XpAward { get => _xpAward; set => SetField(ref _xpAward, value); }
         public bool IsCompleted { get => _isCompleted; set => SetField(ref _isCompleted, value); }
 
-        public event PropertyChangedEventHandler? PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
+        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value)) return false;
             field = value;

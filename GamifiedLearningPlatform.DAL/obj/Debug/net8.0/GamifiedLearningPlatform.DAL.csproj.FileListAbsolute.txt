@@ -1,0 +1,15 @@
+C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform.DAL\bin\Debug\net8.0\GamifiedLearningPlatform.DAL.deps.json
+C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform.DAL\bin\Debug\net8.0\GamifiedLearningPlatform.DAL.runtimeconfig.json
+C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform.DAL\bin\Debug\net8.0\GamifiedLearningPlatform.DAL.dll
+C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform.DAL\bin\Debug\net8.0\GamifiedLearningPlatform.DAL.pdb
+C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform.DAL\obj\Debug\net8.0\GamifiedLearningPlatform.DAL.csproj.AssemblyReference.cache
+C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform.DAL\obj\Debug\net8.0\GamifiedLearningPlatform.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform.DAL\obj\Debug\net8.0\GamifiedLearningPlatform.DAL.AssemblyInfoInputs.cache
+C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform.DAL\obj\Debug\net8.0\GamifiedLearningPlatform.DAL.AssemblyInfo.cs
+C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform.DAL\obj\Debug\net8.0\GamifiedLearningPlatform.DAL.csproj.CoreCompileInputs.cache
+C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform.DAL\obj\Debug\net8.0\GamifiedLearningPlatform.DAL.sourcelink.json
+C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform.DAL\obj\Debug\net8.0\GamifiedLearningPlatform.DAL.dll
+C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform.DAL\obj\Debug\net8.0\refint\GamifiedLearningPlatform.DAL.dll
+C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform.DAL\obj\Debug\net8.0\GamifiedLearningPlatform.DAL.pdb
+C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform.DAL\obj\Debug\net8.0\GamifiedLearningPlatform.DAL.genruntimeconfig.cache
+C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform.DAL\obj\Debug\net8.0\ref\GamifiedLearningPlatform.DAL.dll

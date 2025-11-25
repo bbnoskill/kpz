@@ -8,12 +8,12 @@ C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform\ob
 GamifiedLearningPlatform
 none
 false
-TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
+TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\Dell\RiderProjects\GamifiedLearningPlatform\GamifiedLearningPlatform\App.xaml
 5-2055976453
 
-44189209738
-247-2029091124
+19-1687540490
+2461719584552
 Styles\GlobalStyles.xaml;Views\BadgeDisplayControl.xaml;Views\MainWindow.xaml;Views\StudentDashboardView.xaml;Views\StudentDetailsView.xaml;
 
 False

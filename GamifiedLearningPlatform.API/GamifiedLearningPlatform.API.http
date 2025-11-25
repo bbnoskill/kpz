@@ -1,0 +1,6 @@
+@GamifiedLearningPlatform.API_HostAddress = http://localhost:5100
+
+GET {{GamifiedLearningPlatform.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

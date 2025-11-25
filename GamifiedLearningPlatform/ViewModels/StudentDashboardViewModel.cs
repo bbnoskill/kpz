@@ -9,7 +9,7 @@ namespace GamifiedLearningPlatform.ViewModels;
 
 public class StudentDashboardViewModel : BaseViewModel
 {
-    private string _searchText = string.Empty;
+    private string _searchText;
     public ICollectionView StudentView { get; }
     public MainViewModel MainViewModel { get; }
     public ICommand NavigateToStudentDetailsCommand { get; }
@@ -36,12 +36,12 @@ public class StudentDashboardViewModel : BaseViewModel
         NavigateToStudentDetailsCommand = new RelayCommand(NavigateToStudentDetails);
     }
 
-    private void NavigateToStudentDetails(object? student)
+    private void NavigateToStudentDetails(object student)
     {
         if (student is Student selected) MainViewModel.NavigateToStudentDetails(selected);
     }
 
-    private bool FilterStudents(object? item)
+    private bool FilterStudents(object item)
     {
         if (string.IsNullOrWhiteSpace(SearchText)) return true;
 

@@ -1,9 +1,8 @@
 ﻿using System.Collections.ObjectModel;
+using System.IO;
 using System.Windows;
 using System.Windows.Input;
 using GamifiedLearningPlatform.Commands;
-using GamifiedLearningPlatform.Configuration;
-using GamifiedLearningPlatform.Data.Repositories;
 using GamifiedLearningPlatform.Models;
 using GamifiedLearningPlatform.Services;
 
@@ -11,13 +10,13 @@ namespace GamifiedLearningPlatform.ViewModels;
 
 public class MainViewModel : BaseViewModel
 {
-    private BaseViewModel? _currentViewModel;
+    private BaseViewModel _currentViewModel;
     private readonly StudentDataService _studentDataService;
 
     public ObservableCollection<Student> Students { get; }
-    public Student? SelectedStudent { get; set; }
+    public Student SelectedStudent { get; set; }
 
-    public BaseViewModel? CurrentViewModel
+    public BaseViewModel CurrentViewModel
     {
         get => _currentViewModel;
         set
@@ -36,18 +35,10 @@ public class MainViewModel : BaseViewModel
 
     public MainViewModel()
     {
-        try
-        {
-            var (dataAccess, seed, _) = AppConfigurationFactory.Build();
-            var repository = StudentRepositoryFactory.Create(dataAccess);
-            _studentDataService = new StudentDataService(repository, seed.ApplySeedData);
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show($"Не вдалося ініціалізувати з'єднання з базою даних: {ex.Message}", "Помилка", MessageBoxButton.OK,
-                MessageBoxImage.Error);
-            throw;
-        }
+        var appDataPath = @"C:\Study\sem5\КПЗ";
+        Directory.CreateDirectory(appDataPath);
+        var filePath = Path.Combine(appDataPath, "students.json");
+        _studentDataService = new StudentDataService(filePath);
 
         Students = new ObservableCollection<Student>();
 
@@ -63,7 +54,6 @@ public class MainViewModel : BaseViewModel
         var loadedStudents = await _studentDataService.LoadStudentsAsync();
         Students.Clear();
         foreach (var student in loadedStudents) Students.Add(student);
-        // Встановити початковий View після завантаження даних
         ShowStudentDashboard(null);
     }
 
@@ -81,17 +71,17 @@ public class MainViewModel : BaseViewModel
         }
     }
 
-    public void ShowStudentDashboard(object? obj)
+    public void ShowStudentDashboard(object obj)
     {
         CurrentViewModel = new StudentDashboardViewModel(Students, this);
     }
 
-    public void NavigateToStudentDetails(object? student)
+    public void NavigateToStudentDetails(object student)
     {
         if (student is Student selected)
         {
             SelectedStudent = selected;
-            CurrentViewModel = new StudentDetailsViewModel(SelectedStudent!, this);
+            CurrentViewModel = new StudentDetailsViewModel(SelectedStudent, this);
         }
     }
 }

@@ -1,35 +1,54 @@
-﻿using GamifiedLearningPlatform.Models;
-using GamifiedLearningPlatform.Data.Repositories;
+﻿using System.IO;
+using System.Text.Json;
+using GamifiedLearningPlatform.DTOs;
+using GamifiedLearningPlatform.Mappers;
+using GamifiedLearningPlatform.Models;
 
 namespace GamifiedLearningPlatform.Services;
 
 public class StudentDataService
 {
-    private readonly IStudentRepository _repository;
-    private readonly bool _applySeedData;
+    private readonly string _filePath;
 
-    public StudentDataService(IStudentRepository repository, bool applySeedData)
+    public StudentDataService(string filePath)
     {
-        _repository = repository;
-        _applySeedData = applySeedData;
+        _filePath = filePath;
     }
 
     public async Task<List<Student>> LoadStudentsAsync()
     {
-        var students = await _repository.LoadAsync();
-        if (_applySeedData && students.Count == 0)
+        if (!File.Exists(_filePath))
         {
             var sampleStudents = GenerateSampleStudents();
-            await _repository.SaveGraphAsync(sampleStudents);
+            await SaveStudentsAsync(sampleStudents);
             return sampleStudents;
         }
 
-        return students.ToList();
+        try
+        {
+            using var fs = File.OpenRead(_filePath);
+            var studentDtos = await JsonSerializer.DeserializeAsync<List<StudentDto>>(fs);
+            return StudentMapper.Mapper.Map<List<Student>>(studentDtos);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Помилка завантаження студентів: {ex.Message}");
+            return new List<Student>();
+        }
     }
 
-    public Task SaveStudentsAsync(List<Student> students)
+    public async Task SaveStudentsAsync(List<Student> students)
     {
-        return _repository.SaveGraphAsync(students);
+        try
+        {
+            var studentDtos = StudentMapper.Mapper.Map<List<StudentDto>>(students);
+            using var fs = File.Create(_filePath);
+            await JsonSerializer.SerializeAsync(fs, studentDtos, new JsonSerializerOptions { WriteIndented = true });
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Помилка збереження студентів: {ex.Message}");
+        }
     }
 
     private List<Student> GenerateSampleStudents()
@@ -38,7 +57,7 @@ public class StudentDataService
         {
             new()
             {
-                Id = Guid.NewGuid(), FirstName = "Василь", LastName = "Андрієвський", Email = "vasyl.andrievskyi@example.com", TotalXp = 1500, Level = 3,
+                Id = Guid.NewGuid(), FirstName = "Василь", LastName = "Андрієвський", TotalXp = 1500, Level = 3,
                 Badges = new List<string> { "Новачок", "Дослідник" },
                 Assignments = new List<Assignment>
                 {
@@ -48,7 +67,7 @@ public class StudentDataService
             },
             new()
             {
-                Id = Guid.NewGuid(), FirstName = "Марія", LastName = "Ковальчук", Email = "maria.kovalchuk@example.com", TotalXp = 2800, Level = 5,
+                Id = Guid.NewGuid(), FirstName = "Марія", LastName = "Ковальчук", TotalXp = 2800, Level = 5,
                 Badges = new List<string> { "Новачок", "Майстер Алгоритмів", "Командний Гравець" },
                 Assignments = new List<Assignment>
                 {
